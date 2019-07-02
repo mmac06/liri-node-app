@@ -36,19 +36,26 @@ if (userTrigger === "movie-this") {
                 else {
                     console.log("MOVIE TEST:", response.data.Title);
                     // CODE SEEMS TO WORK UP TO THIS POINT -- THE ABOVE LOG APPEARS, NOT SURE WHY LOOP DOESN'T WORK
+                    var movie = response.data;
+                    console.log("Movie title:", movie.Title);
+                    console.log("Movie year:", movie.Released);
+                    console.log("IMDB rating:", movie.Ratings[0].Value);
+                    console.log("Rotten Tomatoes rating:", movie.Ratings[1].Value);
+                    console.log("Movie country:", movie.Country);
+                    console.log("Movie plot:", movie.Plot);
+                    console.log("Movie actors:", movie.Actors + "\n");
+                    // for (var i = 0; i < response.data.length; i++) {
+                    //     var movie = response.data[i];
+                    //     console.log("varMovie:", movie);
+                    //     console.log("Movie title:", movie.Title);
+                    //     console.log("Movie year:", movie.Released);
+                    //     console.log("IMDB rating:", movie.Ratings[0].Value);
+                    //     console.log("Rotten Tomatoes rating:", movie.Ratings[1].Value);
+                    //     console.log("Movie country:", movie.Country);
+                    //     console.log("Movie plot:", movie.Plot);
+                    //     console.log("Movie actors:", movie.Actors + "\n");
 
-                    for (var i = 0; i < response.data.length; i++) {
-                        var movie = response.data[i];
-                        console.log("varMovie:", movie);
-                        console.log("Movie title:", movie.Title);
-                        console.log("Movie year:", movie.Released);
-                        console.log("IMDB rating:", movie.Ratings[0].Value);
-                        console.log("Rotten Tomatoes rating:", movie.Ratings[1].Value);
-                        console.log("Movie country:", movie.Country);
-                        console.log("Movie plot:", movie.Plot);
-                        console.log("Movie actors:", movie.Actors + "\n");
-
-                    }
+                    // }
                 };
 
             }
@@ -103,11 +110,13 @@ else if (userTrigger === "concert-this") {
         if (err) {
             return console.log('Spotify error occurred: ' + err);
         }
-
-        console.log("spotData:", data);
+       
+        console.log("Spotify Song Link:", data.tracks.items[i].preview_url);
+        console.log("Spotify Artist Name:", data.tracks.items[0].artists[0].name);
+        console.log("Spotify Song Name:", data.tracks.items[i].name);
+        console.log("------------------------")
     });
 
-    console.log("spotifyQ:", spotifyQuery)
     console.log("spotifyName:", spotifyName);
 
 
