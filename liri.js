@@ -106,18 +106,20 @@ else if (userTrigger === "concert-this") {
     }
 
     // pulls user entry into the spotify API
-    var spotifyQuery = spotify.search({ type: 'track', query: spotifyName }, function (err, data) {
+    spotify.search({ type: 'track', query: spotifyName }, function (err, data) {
         if (err) {
             return console.log('Spotify error occurred: ' + err);
         }
-       
+
+        console.log("-------------------------------------------------")
         console.log("Spotify Song Link:", data.tracks.items[i].preview_url);
-        console.log("Spotify Artist Name:", data.tracks.items[0].artists[0].name);
+        console.log("Spotify Artist Name:", data.tracks.items[i].artists[0].name);
         console.log("Spotify Song Name:", data.tracks.items[i].name);
-        console.log("------------------------")
+
     });
 
     console.log("spotifyName:", spotifyName);
+
 
 
     // else if (userTrigger === "do-what-it-says") {
