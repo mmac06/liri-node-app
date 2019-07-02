@@ -22,9 +22,30 @@ var nodeArgs = process.argv;
 // if user types "movie-this" it taps into spofity API and same for the other two user inputs
 if (userTrigger === "movie-this") {
     for (var i = 3; i < nodeArgs.length; i++) {
-        if (i > 2 && i < nodeArgs.length) {
+        if (i > 3 && i < nodeArgs.length) {
             movieName = movieName + "+" + nodeArgs[i];
-        } else movieName += nodeArgs[i]
+        } else movieName += nodeArgs[i];
+        axios.get("http://www.omdbapi.com/?t=" + movieName + "&i=tt3896198&apikey=trilogy").then(
+            function (response) {
+                if (response.data.length === 0) {
+                    console.log("No movie records found.");
+                }
+                else {
+                    for (var i = 0; i < data.length; i++) {
+                        var movie = data[i];
+                        console.log("Movie title:", movie.Title);
+                        console.log("Movie year:", movie.Released);
+                        console.log("IMDB rating:", movie.Ratings[0].Value);
+                        console.log("Rotten Tomatoes rating:", movie.Ratings[1].Value);
+                        console.log("Movie country:", movie.Country);
+                        console.log("Movie plot:", movie.Plot);
+                        console.log("Movie actors:", movie.Actors + "\n");
+
+                    }
+                };
+
+            }
+        )
 
     }
 }
@@ -37,7 +58,7 @@ else if (userTrigger === "concert-this") {
             function (response) {
                 // Returns message if no matches found
                 if (response.data.length === 0) {
-                    console.log("No records found.");
+                    console.log("No concert records found.");
                 }
                 else {
                     for (var i = 0; i < response.data.length; i++) {
@@ -48,17 +69,16 @@ else if (userTrigger === "concert-this") {
                         console.log("Concert city:", event.venue.city);
                         console.log("Concert date:", concertDate + "\n");
                     }
-                }
+                };
             }
         )
-
-
     }
+
 } else if (userTrigger === "spotify-this") {
     for (var i = 3; i < nodeArgs.length; i++) {
         if (i > 3 && i < nodeArgs.length) {
-            spotifyName = concertName + "+" + nodeArgs[i];
-            spotifyName += nodeArgs[i]
+            spotifyName = spotifyName + "+" + nodeArgs[i];
+            spotifyName += nodeArgs[i];
         }
     }
     // else if (userTrigger === "do-what-it-says") {
@@ -70,7 +90,7 @@ else {
 }
 
 var concertQuery = "https://rest.bandsintown.com/artists/" + concertName + "/events?app_id=codingbootcamp";
-var movieQuery = "http://www.omdbapi.com/?t=" + movieName + "&i=tt3896198&apikey=dd77419d";
+var movieQuery = "http://www.omdbapi.com/?t=" + movieName + "&apikey=trilogy";
 // var spotifyQuery = spotify.search({ type: 'track', query: spotifyName }, function (err, data) {
 //     if (err) {
 //         return console.log('Spotify error occurred: ' + err);
