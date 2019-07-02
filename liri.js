@@ -8,7 +8,7 @@ var axios = require("axios");
 var moment = require("moment");
 var fs = require("fs");
 
-var spotify = new Spotify(keys.spotify);
+// var spotify = new Spotify(keys.spotify);
 
 var concertName = "";
 var movieName = "";
@@ -56,6 +56,8 @@ if (userTrigger === "movie-this") {
 
     }
 }
+
+// Concert search
 else if (userTrigger === "concert-this") {
     for (var i = 3; i < nodeArgs.length; i++) {
         if (i > 3 && i < nodeArgs.length) {
@@ -81,13 +83,34 @@ else if (userTrigger === "concert-this") {
         )
     }
 
-} else if (userTrigger === "spotify-this") {
+    // Spotify search
+} else if (userTrigger === "spotify-this-song") {
+    var spotify = new Spotify(keys.spotify);
+
+    // for looop, adding "+" to multi-word entries
     for (var i = 3; i < nodeArgs.length; i++) {
+
         if (i > 3 && i < nodeArgs.length) {
             spotifyName = spotifyName + "+" + nodeArgs[i];
+        }
+        else {
             spotifyName += nodeArgs[i];
         }
     }
+
+    // pulls user entry into the spotify API
+    var spotifyQuery = spotify.search({ type: 'track', query: spotifyName }, function (err, data) {
+        if (err) {
+            return console.log('Spotify error occurred: ' + err);
+        }
+
+        console.log("spotData:", data);
+    });
+
+    console.log("spotifyQ:", spotifyQuery)
+    console.log("spotifyName:", spotifyName);
+
+
     // else if (userTrigger === "do-what-it-says") {
     //     // FIGURE OUT LATER XXX
 
@@ -98,30 +121,16 @@ else {
 
 var concertQuery = "https://rest.bandsintown.com/artists/" + concertName + "/events?app_id=codingbootcamp";
 var movieQuery = "http://www.omdbapi.com/?t=" + movieName + "&apikey=trilogy";
-// var spotifyQuery = spotify.search({ type: 'track', query: spotifyName }, function (err, data) {
-//     if (err) {
-//         return console.log('Spotify error occurred: ' + err);
-//     }
-
-//     console.log("spotData:", data);
-// });
-
 
 
 
 console.log("concertQuery:", concertQuery);
 console.log("movieQuery:", movieQuery);
-// console.log("spotifyQuery:", spotifyQuery);
-
-// concert-this
-// spotify-this-song
-// movie-this
-// do-what-it-says
 
 
 
-// Loop through all the words in the node argument
-// And do a little for-loop magic to handle the inclusion of "+"s
+
+
 
 
 
