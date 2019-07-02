@@ -25,14 +25,21 @@ if (userTrigger === "movie-this") {
         if (i > 3 && i < nodeArgs.length) {
             movieName = movieName + "+" + nodeArgs[i];
         } else movieName += nodeArgs[i];
+
         axios.get("http://www.omdbapi.com/?t=" + movieName + "&i=tt3896198&apikey=trilogy").then(
             function (response) {
+
                 if (response.data.length === 0) {
                     console.log("No movie records found.");
+
                 }
                 else {
-                    for (var i = 0; i < data.length; i++) {
-                        var movie = data[i];
+                    console.log("MOVIE TEST:", response.data.Title);
+                    // CODE SEEMS TO WORK UP TO THIS POINT -- THE ABOVE LOG APPEARS, NOT SURE WHY LOOP DOESN'T WORK
+
+                    for (var i = 0; i < response.data.length; i++) {
+                        var movie = response.data[i];
+                        console.log("varMovie:", movie);
                         console.log("Movie title:", movie.Title);
                         console.log("Movie year:", movie.Released);
                         console.log("IMDB rating:", movie.Ratings[0].Value);
