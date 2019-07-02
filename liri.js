@@ -10,9 +10,10 @@ var fs = require("fs");
 
 var spotify = new Spotify(keys.spotify);
 
-var bandName = "";
+var concertName = "";
 var movieName = "";
-var songName = "";
+var spotifyName = "";
+var saysText = "";
 
 var userTrigger = process.argv[2];
 var nodeArgs = process.argv;
@@ -20,23 +21,33 @@ var nodeArgs = process.argv;
 // var bandQuery = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
 
 
-// if user types "concert-this" it taps into spofity API and same for the other two user inputs
-if (userTrigger==="movie-this"){
+// if user types "movie-this" it taps into spofity API and same for the other two user inputs
+if (userTrigger === "movie-this") {
     for (var i = 3; i < nodeArgs.length; i++) {
-
         movieName += nodeArgs[i]
-
-
-        // if (i > 2 && i < nodeArgs.length) {
-        //     movieName = movieName + "+" + nodeArgs[i];
-        // } else {
-        //     movieName += nodeArgs[i];
-        // }
     }
+}
+else if (userTrigger === "concert-this") {
+    for (var i = 3; i < nodeArgs.length; i++) {
+        concertName += nodeArgs[i]
+    }
+} else if (userTrigger === "spotify-this") {
+    for (var i = 3; i < nodeArgs.length; i++) {
+        spotifyName += nodeArgs[i]
+    }
+} 
+// else if (userTrigger === "do-what-it-says") {
+//     // FIGURE OUT LATER XXX
 
-
+// }
+else {
+    console.log("LIRI doesn't have this information.")
 }
 var movieQuery = "http://www.omdbapi.com/?t=" + movieName + "i=tt3896198&apikey=dd77419d";
+var spofityQuery = ;
+var concertQuery ;
+
+
 console.log("movieQuery:", movieQuery);
 
 // concert-this
