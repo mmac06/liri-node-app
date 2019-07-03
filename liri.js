@@ -34,8 +34,6 @@ if (userTrigger === "movie-this") {
 
                 }
                 else {
-                    console.log("MOVIE TEST:", response.data.Title);
-                    // CODE SEEMS TO WORK UP TO THIS POINT -- THE ABOVE LOG APPEARS, NOT SURE WHY LOOP DOESN'T WORK
                     var movie = response.data;
                     console.log("Movie title:", movie.Title);
                     console.log("Movie year:", movie.Released);
@@ -94,7 +92,7 @@ else if (userTrigger === "concert-this") {
 } else if (userTrigger === "spotify-this-song") {
     var spotify = new Spotify(keys.spotify);
 
-    // for looop, adding "+" to multi-word entries
+    // for loop, adding "+" to multi-word entries
     for (var i = 3; i < nodeArgs.length; i++) {
 
         if (i > 3 && i < nodeArgs.length) {
@@ -129,41 +127,3 @@ else if (userTrigger === "concert-this") {
 else {
     console.log("LIRI doesn't have this information.")
 }
-
-var concertQuery = "https://rest.bandsintown.com/artists/" + concertName + "/events?app_id=codingbootcamp";
-var movieQuery = "http://www.omdbapi.com/?t=" + movieName + "&apikey=trilogy";
-
-
-
-console.log("concertQuery:", concertQuery);
-console.log("movieQuery:", movieQuery);
-
-
-
-
-
-
-
-
-
-// -------------------------
-
-// SEE 7:10 IN CLASS VIDEO
-var pick = function (caseData, functionData) {
-    switch (caseData) {
-        case "concert-this":
-            getBands(functionData);
-            break;
-        case "spotify-this-song":
-            getSpotify(functionData);
-            break;
-        case "movie-this":
-            getMovie(functionData);
-            break;
-        case "do-what-it-says":
-            doWhatItSays();
-            break;
-        default:
-            console.log("LIRI doesn't have this information.")
-    }
-};
