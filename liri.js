@@ -117,13 +117,40 @@ else if (userTrigger === "concert-this") {
     });
 
     console.log("spotifyName:", spotifyName);
-
-
-
-    // else if (userTrigger === "do-what-it-says") {
-    //     // FIGURE OUT LATER XXX
-
 }
-else {
+
+// do what it says section
+else if (userTrigger === "do-what-it-says") {
+    console.log("------------do what it says---------------")
+    fs.readFile("random.txt", function(err, data) {
+        if(err) throw err;
+        var array = data.toString().split(",");
+        console.log("array:", array);
+        console.log("arraySlice:", array.join(" "));
+
+        
+    });
+
+
+// ---------------------
+    //     // var spotify = new Spotify(keys.spotify);
+    
+    
+        // // pulls user entry into the spotify API
+        // spotify.search({ type: 'track', query: spotifyName }, function (err, data) {
+        //     if (err) {
+        //         return console.log('Spotify error occurred: ' + err);
+        //     }
+    
+        //     console.log("-------------------------------------------------")
+        //     console.log("Spotify Song Link:", data.tracks.items[i].preview_url);
+        //     console.log("Spotify Artist Name:", data.tracks.items[i].artists[0].name);
+        //     console.log("Spotify Song Name:", data.tracks.items[i].name);
+    
+        // });
+    }
+
+
+    else {
     console.log("LIRI doesn't have this information.")
 }
