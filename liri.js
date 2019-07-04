@@ -36,6 +36,7 @@ if (userTrigger === "movie-this") {
                 }
                 else {
                     var movie = response.data;
+                    console.log("-------------------------------------------------")
                     console.log("Movie title:", movie.Title);
                     console.log("Movie year:", movie.Released);
                     console.log("IMDB rating:", movie.Ratings[0].Value);
@@ -43,18 +44,6 @@ if (userTrigger === "movie-this") {
                     console.log("Movie country:", movie.Country);
                     console.log("Movie plot:", movie.Plot);
                     console.log("Movie actors:", movie.Actors + "\n");
-                    // for (var i = 0; i < response.data.length; i++) {
-                    //     var movie = response.data[i];
-                    //     console.log("varMovie:", movie);
-                    //     console.log("Movie title:", movie.Title);
-                    //     console.log("Movie year:", movie.Released);
-                    //     console.log("IMDB rating:", movie.Ratings[0].Value);
-                    //     console.log("Rotten Tomatoes rating:", movie.Ratings[1].Value);
-                    //     console.log("Movie country:", movie.Country);
-                    //     console.log("Movie plot:", movie.Plot);
-                    //     console.log("Movie actors:", movie.Actors + "\n");
-
-                    // }
                 };
 
             }
@@ -80,6 +69,7 @@ else if (userTrigger === "concert-this") {
                         var event = response.data[i];
                         var concertDate = moment(event.datetime).format("MM/DD/YYYY")
                         //    Displays concert venue, city, and date in MM/DD/YYYY format
+                        console.log("-------------------------------------------------")
                         console.log("Concert venue:", event.venue.name);
                         console.log("Concert city:", event.venue.city);
                         console.log("Concert date:", concertDate + "\n");
