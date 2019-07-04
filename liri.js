@@ -13,7 +13,6 @@ var fs = require("fs");
 var concertName = "";
 var movieName = "";
 var spotifyName = "";
-var saysText = "";
 
 var userTrigger = process.argv[2];
 var nodeArgs = process.argv;
@@ -110,20 +109,15 @@ else if (userTrigger === "concert-this") {
     console.log("spotifyName:", spotifyName);
 }
 
-// do what it says section
+// do what it says section -- NOTE: As you can see, I am not able to put the result into the spotify section. I should have designed each section as a function that would allow me to do this but did not and simply ran out of time.
 else if (userTrigger === "do-what-it-says") {
     console.log("------------do what it says---------------")
     fs.readFile("random.txt", "utf8", function (err, data) {
         if (err) throw err;
         var array = data.toString().split(",");
         console.log("arrays:", array[0], array[1])
-
-
     });
-
-
 }
-
 
 else {
     console.log("LIRI doesn't have this information.")
